@@ -31,10 +31,13 @@ $sizeArray = explode(',', $sizeString);
         <div class="container-fluid">
           <div class="row">
             <span id="modal_errors" class="bg-danger"></span>
-            <div class="col-sm-6">
-              <div class="center-block">
-                <img src="<?= $product['image']?>" alt="<?= $product['title']?>" class="details img-responsive">
-              </div>
+              <?php $photos = explode(',',$product['image']); ?>
+              <div class="col-sm-6<?=((count($photos) > 1)?' fotorama':'');?>">
+                <?php foreach($photos as $photo):?>
+                  <!-- <div class="center-block"> -->
+                    <img src="<?= $photo;?>" alt="<?= $product['title']?>" class="details img-responsive">
+                  <!-- </div> -->
+              <?php endforeach; ?>
             </div>
             <div class="col-sm-6">
               <h4>Details</h4>
@@ -87,6 +90,11 @@ $sizeArray = explode(',', $sizeString);
     var available = jQuery('#size option:selected').data('available');
     jQuery('#available').val(available);
   });
+
+  $(function () {
+    $('.fotorama').fotorama({'loop':true,'autoplay':true});
+  });
+
   function closeModal(){
     jQuery('#details-modal').modal('hide'); // .modal is a bootstrap.js fnction
     setTimeout(function(){

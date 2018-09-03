@@ -5,7 +5,6 @@ if (!is_logged_in()) {
 }
 include 'includes/head.php';
 include 'includes/navigation.php';
-asdasdasd
 //Delete Products
 if (isset($_GET['delete'])) {
   $id = sanitize($_GET['delete']);
@@ -31,9 +30,13 @@ $saved_image = '';
     $productResults = $db->query("SELECT * FROM products WHERE id = '$edit_id';");
     $product = mysqli_fetch_assoc($productResults);
     if (isset($_GET['delete_image'])) {
-      $image_url = $_SERVER['DOCUMENT_ROOT'].$product['image'];
+      $imgi = (int)$_GET['imgi'] - 1;
+      $images = explode(',',$product['image']);
+      $image_url = $_SERVER['DOCUMENT_ROOT'].$images[$imgi];
       unlink($image_url);
-      $db->query("UPDATE products SET image = '' WHERE id = '$edit_id'");
+      unset($images[$imgi]);
+      $imageString = implode(',',$images);
+      $db->query("UPDATE products SET image = '{$imageString}' WHERE id = '$edit_id'");
       header('Location: products.php?edit='.$edit_id);
     }
     $category = ((isset($_POST['child']) && $_POST['child'] != '')?sanitize($_POST['child']):$product['categories']);
@@ -67,48 +70,58 @@ $saved_image = '';
 if ($_POST) {
   $errors = array();
   $required = array('title', 'brand', 'price', 'parent', 'child', 'sizes');
+  $allowed = array('png', 'jpg', 'jpeg', 'gif');
+  $tmpLoc = array();
+  $uploadPath = array();
   foreach ($required as $field) {
     if ($_POST[$field] == '') {
       $errors[] = 'All Fields With an Asterisk are required.';
       break;
     }
   }
+  var_dump($_FILES['photo']);
+  $photoCount = count($_FILES['photo']['name']);
   //Validate image
-  if ($_FILES['photo']['name'] != ''){
-    //$_FILES = has "photo" in the index 0 that holds an assoc array of the upload file
-    $photo = $_FILES['photo'];
-    $name = $photo['name'];
-    $nameArray = explode('.', $name);
-    $fileName = $nameArray[0];
-    $fileExt = $nameArray[1];
-    $mime = explode('/', $photo['type']);
-    $mimeType = $mime[0];
-    $mimeExt = $mime[1];
-    $tmpLoc = $photo['tmp_name'];
-    $fileSize = $photo['size'];
-    $allowed = array('png', 'jpg', 'jpeg', 'gif');
-    $uploadName = md5(microtime()).'.'.$fileExt;
-    $uploadPath = BASEURL.'images/products/'.$uploadName;
-    $dbPath = '/ecommerce/images/products/'.$uploadName;
-    if ($mimeType != 'image') {
-      $errors[] = 'The file must be an image.';
-    }
-    if (!in_array($fileExt, $allowed)) {
-      $errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
-    }
-    if ($fileSize > 15000000) {
-      $errors[] = 'The file size must be under 15MB.';
-    }
-    if ($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jpg')) {
-      $errors[] = 'File extension does not match the file';
+  if ($photoCount > 0){
+    for ($i=0; $i < $photoCount; $i++) {
+  //   //$_FILES = has "photo" in the index 0 that holds an assoc array of the upload file
+       $name = $_FILES['photo']['name'][$i];
+       $nameArray = explode('.', $name);
+       $fileName = $nameArray[0];
+       $fileExt = $nameArray[1];
+       $mime = explode('/', $_FILES['photo']['type'][$i]);
+       $mimeType = $mime[0];
+       $mimeExt = $mime[1];
+       $tmpLoc[] = $_FILES['photo']['tmp_name'][$i];
+       $fileSize = $_FILES['photo']['size'][$i];
+       $uploadName = md5(microtime().$i).'.'.$fileExt;
+       $uploadPath[] = BASEURL.'images/products/'.$uploadName;
+       if ($i != 0) {
+         $dbPath .= ',';
+       }
+       $dbPath .= '/ecommerce/images/products/'.$uploadName;
+       if ($mimeType != 'image') {
+         $errors[] = 'The file must be an image.';
+       }
+       if (!in_array($fileExt, $allowed)) {
+         $errors[] = 'The file extension must be a png, jpg, jpeg, or gif.';
+       }
+       if ($fileSize > 15000000) {
+         $errors[] = 'The file size must be under 15MB.';
+       }
+       if ($fileExt != $mimeExt && ($mimeExt == 'jpeg' && $fileExt != 'jpg')) {
+         $errors[] = 'File extension does not match the file';
+       }
     }
   }
   if (!empty($errors)) {
     echo display_errors($errors);
   }else{
     //Upload file and insert into database
-    if (!empty($_FILES)) {
-      move_uploaded_file($tmpLoc, $uploadPath);
+    if ($photoCount > 0) {
+      for ($i=0; $i < $photoCount; $i++) {
+        move_uploaded_file($tmpLoc[$i], $uploadPath[$i]);
+      }
     }
     $insertSql = "INSERT INTO products (`title`,`price`,`list_price`,`brand`,`categories`,`sizes`,`image`,`description`)
      VALUES ('$title','$price','$list_price','$brand','$category','$sizes','$dbPath','$description');";
@@ -169,13 +182,20 @@ if ($_POST) {
     </div>
     <div class="form-group col-md-6">
       <?php if($saved_image != ''): ?>
-        <div class="">
-          <img src="<?=$saved_image;?>" alt="saved image" class="saved-image"/><br>
-          <a href="products.php?delete_image=1&edit=<?=$edit_id;?>" class="text-danger">Delete Image</a>
-        </div>
+        <?php
+        $imgi = 1;
+        $images = explode(',',$saved_image);?>
+        <?php foreach($images as $image): ?>
+          <div class="saved-image text-center col-md-4">
+            <img src="<?=$image;?>" alt="saved image" /><br>
+            <a href="products.php?delete_image=1&edit=<?=$edit_id;?>&imgi=<?=$imgi;?>" class="text-danger">Delete Image</a>
+          </div>
+        <?php
+          $imgi++;
+          endforeach;?>
       <?php else: ?>
         <label for="photo">Product Photo</label>
-        <input type="file" class="form-control" name="photo" id="photo">
+        <input type="file" class="form-control" name="photo[]" id="photo" multiple>
       <?php endif; ?>
     </div>
     <div class="form-group col-md-6">

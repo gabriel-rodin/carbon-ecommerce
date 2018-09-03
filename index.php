@@ -16,7 +16,8 @@
       <?php while($product = mysqli_fetch_assoc($featured)) : ?>
         <div class="col-md-3">
           <h4><?= $product['title'];?></h4> <!-- ?= "" is equals to ?php echo ""; -->
-          <img src="<?= $product['image'];?>" alt="<?= $product['title'];?>" class="img-thumb"/>
+          <?php $photos = explode(',',$product['image']); ?>
+          <img src="<?= $photos[0];?>" alt="<?= $product['title'];?>" class="img-thumb"/>
           <p class="list-price text-danger">List Price <s>₱<?= $product['list_price'];?></s></p>
           <p class="price">Our Price: ₱<?= $product['price'];?></p>
           <!--<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#details-modal">Details</button>-->

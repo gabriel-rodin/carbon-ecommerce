@@ -59,6 +59,11 @@ body{
   margin-top: 50px;
 }
 
+fotorama__wrap {
+    width: 70%;
+    margin: 15px auto;
+}
+
 img.details {
   width: 70%;
   margin: 15px auto;
@@ -73,9 +78,13 @@ img.details {
   margin-top: -35px;
 }
 
-.saved-image {
-  width: 200px;
-  height: auto;
+.saved-image{
+  text-align: center;
+}
+
+.saved-image img{
+  width: auto;
+  height: 150px;
 }
 
 #login-form {
