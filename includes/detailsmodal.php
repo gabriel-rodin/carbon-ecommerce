@@ -17,7 +17,7 @@ $sizeArray = explode(',', $sizeString);
 
 <!-- Details Modal -->
 <?php ob_start(); #object buffer start ?>
-<div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-1" aria-hidden="true">
+<div class="modal fade details-1" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-1" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,7 +32,7 @@ $sizeArray = explode(',', $sizeString);
           <div class="row">
             <span id="modal_errors" class="bg-danger"></span>
               <?php $photos = explode(',',$product['image']); ?>
-              <div class="col-sm-6<?=((count($photos) > 1)?' fotorama':'');?>">
+              <div class="col-sm-<?=((count($photos) > 1)?'4 fotorama':'5');?>">
                 <?php foreach($photos as $photo):?>
                   <!-- <div class="center-block"> -->
                     <img src="<?= $photo;?>" alt="<?= $product['title']?>" class="details img-responsive">
