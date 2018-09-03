@@ -2,7 +2,7 @@
 define('BASEURL', $_SERVER['DOCUMENT_ROOT'].'/ecommerce/');
 define('CART_COOKIE', 'SBwi72UCklwiqzz2');
 define('CART_COOKIE_EXPIRE',time() + (86400 * 30)); //seconds of day x 30
-define('TAXRATE',0.12); // %12 tax rate
+define('TAXRATE',0.05); // %12 tax rate
 
 define('CURRENCY', 'php');
 define('CHECKOUTMODE','TEST'); // Change test to live when you are ready to go live

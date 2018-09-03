@@ -69,7 +69,7 @@
               $sub_total += ($product['price'] * $item['quantity']);
             }
             $tax = TAXRATE * $sub_total;
-            $tax = number_format($tax,2);
+            $tax = a_number_format($tax,2);
             $grand_total = $tax + $sub_total;
           ?>
         </tbody>
