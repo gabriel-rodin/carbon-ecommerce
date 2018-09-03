@@ -1,0 +1,133 @@
+body{
+  padding-top: 50px;
+}
+
+#headerWrapper {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  height: 600px;
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 700px;
+  background-position: top center;
+}
+
+#logotext {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+  background-image: url(../images/carbon-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50% 180px;
+  top: 20%;
+  margin-top: 90px;
+}
+#partial-headerWrapper {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  height: 280px;
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 700px;
+  background-position: top center;
+}
+
+#partial-logotext {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+  background-image: url(../images/carbon-logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50% 180px;
+  top: 50%;
+  margin-top: -90px;
+}
+
+.img-thumb {
+  width: auto;
+  height: 200px;
+}
+#footer {
+  margin-top: 50px;
+}
+
+img.details {
+  width: 70%;
+  margin: 15px auto;
+}
+
+.table-auto {
+  width: auto;
+  margin: 0 auto;
+}
+
+#add-product-btn {
+  margin-top: -35px;
+}
+
+.saved-image {
+  width: 200px;
+  height: auto;
+}
+
+#login-form {
+  width: 50%;
+  height: 60%;
+  border: 2px solid #000;
+  border-radius: 15px;
+  box-shadow: 7px 7px 15px rgba(0,0,0,0.6);
+  margin: 7% auto;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.totals-table-header th{
+  text-align: center;
+}
+
+/* STRIPE CSS */
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  background-color: white;
+  height: 40px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+#cart_widget td, #recent_widget{
+  font-size: 12px;
+}
+#recent_widget td{
+  font-size: 12px;
+}
+
+input.price-range {
+  width: 55px;
+}
