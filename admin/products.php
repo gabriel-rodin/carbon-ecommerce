@@ -5,7 +5,6 @@ if (!is_logged_in()) {
 }
 include 'includes/head.php';
 include 'includes/navigation.php';
-asdasdasd
 //Delete Products
 if (isset($_GET['delete'])) {
   $id = sanitize($_GET['delete']);
