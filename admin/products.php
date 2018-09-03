@@ -12,6 +12,7 @@ if (isset($_GET['delete'])) {
   $db->query("UPDATE products SET deleted = 1 WHERE id='$id'; ");
   header('Location: products.php');
 }
+
 $dbPath = '';
 if (isset($_GET['add']) || isset($_GET['edit'])) {
 $brand_query = $db->query("SELECT * FROM brand ORDER BY brand");
