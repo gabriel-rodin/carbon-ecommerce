@@ -82,7 +82,7 @@ function sizesToArray($string){
   $returnArray = array();
   foreach ($sizesArray as $size) {
     $s = explode(':',$size);
-    $returnArray[] = array('size' => $s[0],'quantity' => $s[1]);
+    $returnArray[] = array('size' => $s[0],'quantity' => $s[1],'threshold' => $s[2]);
   }
   return $returnArray;
 }
@@ -90,7 +90,7 @@ function sizesToArray($string){
 function sizesToString($sizes){
   $sizeString = '';
   foreach ($sizes as $size) {
-    $sizeString .= $size['size'].':'.$size['quantity'].',';
+    $sizeString .= $size['size'].':'.$size['quantity'].':'.$size['threshold'].',';
   }
   $trimmed = rtrim($sizeString, ',');
   return $trimmed;
