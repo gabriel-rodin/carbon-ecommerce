@@ -48,9 +48,9 @@ foreach ($items as $item) {
   foreach ($sizes as $size) {
     if ($size['size'] == $item['size']) {
       $q = $size['quantity'] - $item['quantity'];
-      $newSizes[] = array('size' => $size['size'],'quantity' => $q);
+      $newSizes[] = array('size' => $size['size'],'quantity' => $q,'threshold' => $size['threshold']);
     }else {
-      $newSizes[] = array('size' => $size['size'],'quantity' => $size['quantity']);
+      $newSizes[] = array('size' => $size['size'],'quantity' => $size['quantity'],'threshold' => $size['threshold']);
     }
   }
   $sizeString = sizesToString($newSizes);
@@ -73,11 +73,11 @@ $db->query("UPDATE cart SET paid = 1 WHERE id = '{$cart_id}';");
   include 'includes/headerpartial.php';
 ?>
   <h1 class="text-center text-success">Thank You!</h1>
-  <p> Your card has been successfully charged <?=money($grand_total);?>. You have been emailed a receipt. Please
+  <p class="text-center"> Your card has been successfully charged <?=money($grand_total);?>. You have been emailed a receipt. Please
       check your spam folder if it is not in your inbox. You can print this page as a receipt.</p>
-  <p> Your receipt number is: <strong><?=$cart_id;?></strong></p>
-  <p> Your order will be shipped to the address below.</p>
-  <address class="">
+  <p class="text-center"> Your receipt number is: <strong><?=$cart_id;?></strong></p>
+  <p class="text-center"> Your order will be shipped to the address below.</p>
+  <address class="text-center">
     <?=$full_name;?><br>
     <?=$street;?><br>
     <?=(($street2 != '')?$street2.'<br>':'');?>
