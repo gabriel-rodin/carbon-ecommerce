@@ -295,7 +295,7 @@ if (isset($_GET['featured'])) {
           </a>
           &nbsp <?=(($product['featured'] == 1)?'Featured Product':'')?>
         </td>
-        <td>0</td>
+        <td><?=$product['sold'];?></td>
       </tr>
     <?php endwhile; ?>
   </tbody>

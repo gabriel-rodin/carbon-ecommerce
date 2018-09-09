@@ -11,7 +11,7 @@
     $cat_id = '';
   }
 
-  $sql = "SELECT * FROM products WHERE categories = '$cat_id'";
+  $sql = "SELECT * FROM products WHERE categories = '$cat_id' AND deleted = 0";
   $productQ = $db->query($sql);
   $category = get_category($cat_id);
 ?>

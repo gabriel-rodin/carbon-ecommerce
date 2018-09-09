@@ -10,6 +10,24 @@
   if (isset($_GET['complete']) && $_GET['complete'] == 1) {
     $cart_id = sanitize((int)$_GET['cart_id']);
     $db->query("UPDATE cart SET shipped = 1 WHERE id = '{$cart_id}';");
+
+    //update Sold
+    $cartQ = $db->query("SELECT * FROM cart WHERE id = '{$cart_id}';");
+    $cart = mysqli_fetch_assoc($cartQ);
+    $items = json_decode($cart['items'],true); // true returns assoc array instead of an object
+    $num = count($items);
+    $prod_ids = array();
+    $quantities = array();
+    for ($i = 0; $i < $num; $i++){
+      $prod_ids[] = $items[$i]['id'];
+      $quantities[] = $items[$i]['quantity'];
+      $prodQ = $db->query("SELECT * FROM products WHERE id = '{$prod_ids[$i]}';");
+      $prod = mysqli_fetch_assoc($prodQ);
+      $sold = $prod['sold'];
+      $sold += $items[$i]['quantity'];
+      $db->query("UPDATE products SET sold = '{$sold}' WHERE id = '{$prod_ids[$i]}';");
+    }
+
     $_SESSION['success_flash'] = "The Order has been completed";
     header('Location: index.php');
   }

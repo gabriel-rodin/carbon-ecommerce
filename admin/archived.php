@@ -46,7 +46,7 @@ if (isset($_GET['archived'])) {
         <td><?=$product['title'];?></td>
         <td><?=money($product['price']);?></td>
         <td><?=$category;?></td>
-        <td>0</td>
+        <td><?=$product['sold'];?></td>
       </tr>
     <?php endwhile; ?>
   </tbody>
