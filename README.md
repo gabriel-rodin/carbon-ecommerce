@@ -1,6 +1,4 @@
-#My 1st Ecommerce Website!!
-
-Special Thanks to:
+Credits:
   Curtis Parham
   Brad Traversy
   Daniel Nielsens
