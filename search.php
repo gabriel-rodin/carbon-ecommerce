@@ -6,17 +6,17 @@
   include 'includes/leftbar.php';
 
   $sql = "SELECT * FROM products";
-  $cat_id = (($_POST['cat'] != '')?sanitize($_POST['cat']):'');
+  $cat_id = (isset($_POST['cat']) && ($_POST['cat'] != '') ? sanitize($_POST['cat']) : '');
   if ($cat_id == '') {
     $sql .= " WHERE deleted = 0";
   }else {
     $sql .= " WHERE categories = '{$cat_id}' AND deleted = 0";
     $category = get_category($cat_id);
   }
-  $price_sort = (($_POST['price_sort'] != '')?sanitize($_POST['price_sort']):'');
-  $min_price = (($_POST['min_price'] != '')?sanitize($_POST['min_price']):'');
-  $max_price = (($_POST['max_price'] != '')?sanitize($_POST['max_price']):'');
-  $brand = (($_POST['brand'] != '')?sanitize($_POST['brand']):'');
+  $price_sort = (isset($_POST['price_sort']) && ($_POST['price_sort'] != '') ? sanitize($_POST['price_sort']) : '');
+  $min_price = (isset($_POST['min_price']) && ($_POST['min_price'] != '') ? sanitize($_POST['min_price']) : '');
+  $max_price = (isset($_POST['max_price']) && ($_POST['max_price'] != '') ? sanitize($_POST['max_price']) : '');
+  $brand = (isset($_POST['brand']) && ($_POST['brand'] != '') ? sanitize($_POST['brand']) : '');
   if ($min_price != '') {
     $sql .= " AND price >= '{$min_price}'";
   }
