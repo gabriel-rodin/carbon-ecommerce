@@ -53,7 +53,7 @@
       }else {
         //add user to database
         $hashed = password_hash($password, PASSWORD_DEFAULT);
-        $db->query("INSERT INTO users (full_name,email,password,permissions) VALUES ('$name','$email','$hashed','$permissions');");
+        $db->query("INSERT INTO users (full_name,email,password,permissions,join_date) VALUES ('$name','$email','$hashed','$permissions',NOW());");
         $_SESSION['success_flash'] = 'User has been added';
         header('Location: users.php');
       }
