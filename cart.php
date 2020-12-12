@@ -200,7 +200,7 @@
       'country' : jQuery('#country').val()
     };
     jQuery.ajax({
-      url : '/ecommerce/admin/parsers/check_address.php',
+      url : '/admin/parsers/check_address.php',
       method : 'post',
       data : data,
       success : function(data){

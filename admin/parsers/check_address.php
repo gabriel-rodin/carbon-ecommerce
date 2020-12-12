@@ -1,5 +1,5 @@
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/ecommerce/core/init.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/core/init.php';
   //post data from ajax in cart.php
   $name = sanitize($_POST['full_name']);
   $email = sanitize($_POST['email']);

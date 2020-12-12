@@ -15,7 +15,6 @@
     WHERE c.paid = 1 AND c.shipped =0
     ORDER BY t.txn_date";
   $txnResults = $db->query($txnQuery);
-
  ?>
 <div class="col-md-12">
   <h3 class="text-center">Orders to Ship</h3>

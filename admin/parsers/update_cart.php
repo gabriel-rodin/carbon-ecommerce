@@ -1,5 +1,5 @@
 <?php
-  require_once $_SERVER['DOCUMENT_ROOT'].'/ecommerce/core/init.php';
+  require_once $_SERVER['DOCUMENT_ROOT'].'/core/init.php';
   //post data from ajax request in footer.php
   $mode = sanitize($_POST['mode']);
   $edit_size = sanitize($_POST['edit_size']);

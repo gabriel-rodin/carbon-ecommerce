@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <a href="/ecommerce/admin/index.php" class="navbar-brand">Carbon Admin</a>
+    <a href="/admin/index.php" class="navbar-brand">Carbon Admin</a>
     <ul class="nav navbar-nav">
         <!-- Menu Items -->
         <li><a href="index.php">My Dashboard</a></li>

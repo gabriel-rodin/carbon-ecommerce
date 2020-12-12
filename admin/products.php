@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/ecommerce/core/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/core/init.php';
 if (!is_logged_in()) {
   login_error_redirect();
 }
@@ -101,7 +101,7 @@ if ($_POST) {
        if ($i != 0) {
          $dbPath .= ',';
        }
-       $dbPath .= '/ecommerce/images/products/'.$uploadName;
+       $dbPath .= '/images/products/'.$uploadName;
        if ($mimeType != 'image') {
          $errors[] = 'The file must be an image.';
        }

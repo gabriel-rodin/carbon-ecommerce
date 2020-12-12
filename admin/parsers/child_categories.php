@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/ecommerce/core/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/core/init.php';
 $parent_id = (int)$_POST['parentID']; // parentID from ajax request in footer
 $selected = sanitize($_POST['selected']);
 $child_query = $db->query("SELECT * FROM categories WHERE parent='$parent_id' ORDER BY category");

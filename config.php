@@ -1,5 +1,5 @@
 <?php
-define('BASEURL', $_SERVER['DOCUMENT_ROOT'].'/ecommerce/');
+define('BASEURL', $_SERVER['DOCUMENT_ROOT'].'/');
 define('CART_COOKIE', 'SBwi72UCklwiqzz2');
 define('CART_COOKIE_EXPIRE',time() + (86400 * 30)); //seconds of day x 30
 define('TAXRATE',0.05); // %12 tax rate

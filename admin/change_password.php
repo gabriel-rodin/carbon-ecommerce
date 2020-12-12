@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/ecommerce/core/init.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/core/init.php';
 if (!is_logged_in()) {
   login_error_redirect();
 }
@@ -24,7 +24,7 @@ $errors = array();
 <!--
 <style>
   body{
-    background-image: url("/ecommerce/images/background.jpg");
+    background-image: url("/images/background.jpg");
     background-size: 100vw 100vh;
     background-attachment: fixed;
   }
@@ -86,7 +86,7 @@ $errors = array();
       <input type="submit" value="Submit" class="btn btn-primary">
     </div>
   </form>
-  <p class="text-right"><a href="/ecommerce/index.php" alt="home">Visit Site</a></p>
+  <p class="text-right"><a href="/index.php" alt="home">Visit Site</a></p>
 </div>
 
 <?php
